@@ -1,0 +1,92 @@
+{{> header}}
+{{#if isLoggedIn}}
+<div class="container">    
+    <div id="wrapping">
+    <div id="left">
+        <span style="margin-left:220px">Total Expenses: <p id="count" style="margin-top: 100px;display:inline-block;color:#6cf"></span>
+        <div>
+    <span style="margin-left:600px;font-size:medium" >Difference: <p id="countDifference" style="margin-top: 10px;display:inline-block;"></span>
+    </div>
+        <form id="createExpenseForm" class="horizontal" action="#/MonthlyExpense" method="POST">
+    <div class="form-group">
+    <label for="start">Choose month and year:</label><br>
+    <input type="month" style="width: 300px;" id="start" name="Date">
+    </div>
+    <div class="form-group"> 
+    <button class="btn btn-primary" id="check">Check</button>
+    </div>
+    <div class="expenses" style="margin-top: 100px;display:inline-flex">
+        
+        {{#if expenses}}
+        {{#each expenses}}
+        
+        <div class="form-group" >
+            <li style="margin-left: 10px;">
+                <div style="margin-left:5px;color:red">Expense</div>
+            <form method="POST" action="#/DeleteExpense/{{this.Id}}">                               
+                <input  type="text" class="form-control" value="{{this.Category}}" name="Category" readonly>    
+                <input  type="text" class="form-control amounts" value="{{this.Amount}} " name="Amount" readonly> 
+                <input  type="text" class="form-control" value="{{this.Remarks}}" name="Remarks" readonly>
+                <input type="text" style="display: none;" value="{{this.Id}}" name="Id" hidden>          
+                </form>
+            </li>
+        </div>
+        
+        {{/each}}
+        {{else}}
+
+        <h3>No expenses for that month .... :(</h3>
+        {{/if}}
+        
+</div>
+</form>
+    </div>
+    <div id="right" style="margin-right: 750px;">
+        <div style="text-align: center;">
+            <span>Total Incomes: <p id="countIncome" style="margin-top: 100px;display:inline-block;color:#6cf"></span>
+        </div>
+        
+        <form id="createExpenseForm" class="horizontal" action="#/MonthlyIncome" method="POST" style="margin-top: 190px;">
+    <div class="form-group">
+    <label for="start">Choose month and year:</label><br>
+    <input type="month" style="width: 300px;" id="start" name="Date">
+    </div>
+    <div class="form-group"> 
+    <button class="btn btn-primary" id="check">Check</button>
+    </div>
+    <div class="expenses" style="margin-top: 100px;display:inline-flex">
+        
+        {{#if incomes}}
+        {{#each incomes}}
+        
+        <div class="form-group" >
+            <li style="margin-left: 10px;">
+                <div style="margin-left:5px;color:green">Income</div>
+            <form method="POST" action="#/DeleteExpense/{{this.Id}}">                               
+                <input  type="text" class="form-control" value="{{this.Category}}" name="Category" readonly>    
+                <input  type="text" class="form-control amountsIncome" value="{{this.Amount}} " name="Amount" readonly> 
+                <input  type="text" class="form-control" value="{{this.Remarks}}" name="Remarks" readonly>
+                <input type="text" style="display: none;" value="{{this.Id}}" name="Id" hidden>          
+                </form>
+            </li>
+        </div>
+        
+        {{/each}}
+        {{else}}
+
+        <h3>No incomes for that month .... :(</h3>
+        {{/if}}
+        
+</div>
+</form>
+    </div>
+</div>
+</div>
+
+
+    {{/if}}
+{{> footer}}
+
+<script>
+    setCount();
+</script>

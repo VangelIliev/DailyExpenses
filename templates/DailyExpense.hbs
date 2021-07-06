@@ -1,0 +1,118 @@
+{{> header}}
+{{#if isLoggedIn}}
+<div class="container">   
+    <div id="wrapping">
+        <div id="left">    
+        <span style="margin-left:220px">Total Expenses: <p id="count" style="margin-top: 100px;display:inline-block;color:#6cf"></span>
+    <div>
+    <span style="margin-left:600px;font-size:medium" >Difference: <p id="countDifference" style="margin-top: 10px;display:inline-block;"></span>
+    </div>
+        <form id="createExpenseForm" class="horizontal" action="#/DailyExpense" method="POST">
+        <div class="form-group">
+        <label for="start">Choose date:</label><br>
+        <input type="date" style="width: 300px;" value="{{this.Date}}" id="start" name="Date">
+        </div>
+    <div class="form-group"> 
+    <button class="btn btn-primary" id="check">Check</button>
+    </div>
+    <div class="expenses" style="margin-top: 100px;display:inline-flex">
+        
+        {{#if expenses}}
+        {{#each expenses}}
+        
+        <div class="form-group" >
+            <li style="margin-left: 10px;">
+             <div style="margin-left:5px;color:red">Expense</div>   
+            <form method="POST" action="#/DeleteExpense/{{this.Id}}">                               
+                <input  type="text" class="form-control" value="{{this.Category}}" name="Category" readonly>    
+                <input  type="text" class="form-control amounts" value="{{this.Amount}} " name="Amount" readonly> 
+                <input  type="text" class="form-control" value="{{this.Remarks}}" name="Remarks" readonly>
+                <input type="text" style="display: none;" value="{{this.Id}}" name="Id" hidden>          
+                </form>
+            </li>
+        </div>
+        
+        {{/each}}
+        {{else}}
+
+        <h3>No expenses for that day .... :(</h3>
+        {{/if}}
+        
+</div>
+</form>
+</div>
+        <div id="right" style="margin-top:40px">
+            <div style="text-align: center;">
+            <span>Total Incomes: <p id="countIncome" style="margin-top: 100px;display:inline-block;color:#6cf"></span>
+        </div>
+            <form id="createExpenseForm" class="horizontal" action="#/DailyIncome" method="POST">
+        <div class="form-group">
+        <label for="start">Choose date:</label><br>
+        <input type="date" style="width: 300px;" value="{{this.Date}}" id="start" name="Date">
+        </div>
+    <div class="form-group"> 
+    <button class="btn btn-primary" id="check">Check</button>
+    </div>
+    <div class="expenses" style="margin-top: 100px;display:inline-flex">
+        {{#if incomes}}
+        {{#each incomes}}
+        
+        <div class="form-group" >
+            <li style="margin-left: 10px;">
+            <div style="margin-left:5px;color:green">Income</div>
+            <form method="POST" action="#/DeleteExpense/{{this.Id}}">                               
+                <input  type="text" class="form-control" value="{{this.Category}}" name="Category" readonly>    
+                <input  type="text" class="form-control amountsIncome" value="{{this.Amount}} " name="Amount" readonly> 
+                <input  type="text" class="form-control" value="{{this.Remarks}}" name="Remarks" readonly>
+                <input type="text" style="display: none;" value="{{this.Id}}" name="Id" hidden>          
+                </form>
+            </li>
+        </div>
+        
+        {{/each}}
+        {{else}}
+
+        <h3>No incomes for that day .... :(</h3>
+        {{/if}}
+        
+</div>
+</form>
+        </div>
+    </div>
+
+</div>
+
+    {{/if}}
+{{> footer}}
+
+<script>
+    var amounts = document.getElementsByClassName('amounts');
+    var amountsIncome = document.getElementsByClassName('amountsIncome');
+    var totalExpenses = 0;
+    var totalExpensesIncome = 0;
+    Array.prototype.forEach.call(amounts,function(e){
+        var expenseValue = Number(e.value);
+        totalExpenses += expenseValue;
+        
+    });
+    Array.prototype.forEach.call(amountsIncome,function(e){
+        var expenseValue = Number(e.value);
+        totalExpensesIncome += expenseValue;
+        
+    });
+
+    var totalCount = document.getElementById('count');
+    var totalCountIncome = document.getElementById('countIncome');
+    totalCount.innerText = totalExpenses;
+    totalCountIncome.innerText = totalExpensesIncome;
+    var difference = document.getElementById('countDifference');
+    var differenceCount = totalExpensesIncome - totalExpenses;
+    console.log(differenceCount);
+    if(differenceCount < 0){
+        difference.style.color = 'red';
+    }
+    else{
+        difference.style.color = 'green';
+    }
+    difference.innerText  = differenceCount;
+</script>

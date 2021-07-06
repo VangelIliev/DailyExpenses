@@ -1,0 +1,15 @@
+<ul id="header">
+  {{#if isLoggedIn}}
+  <span style="color: white;" class="navbar-text">
+      Welcome, {{email}}
+    </span>
+  <li><a href="#/Home">Home</a></li>
+  <li><a href="#/CreateExpense">CreateExpense</a></li>
+  <li><a href="#/DailyExpense">DailyExpense</a></li>
+  <li><a href="#/MonthlyExpense">MonthlyExpense</a></li>
+  <li><a href="#/YearExpenses">YearExpenses</a></li>
+  <li><a href="#/CategoryExpenses">CategoryExpenses</a></li>
+  <li><a href="#/ChartsExpense">Charts</a></li>
+  <li style="float:right"><a href="#/LogOut">LogOut</a></li>
+  {{/if}}
+</ul>

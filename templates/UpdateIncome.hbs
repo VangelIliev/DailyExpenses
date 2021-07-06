@@ -1,0 +1,31 @@
+{{> header}}
+{{#if isLoggedIn}}
+<form id="createExpenseForm" class="horizontal" action="#/UpdateIncome/{{this.Id}}" method="POST">
+
+  <div class="form-group-sm">
+    <label for="exampleFormControlSelect1">Choose Category</label><br>
+    <select style="width: 300px;" class="form-select form-select-lg mb-5" value = "{{this.Id}}" id="selector" name="Category">
+      <option>Salary</option>
+      <option>Pension</option>
+      <option>Salary Bonuses</option>
+      <option>Item sale</option>
+      <option>Interest</option>
+    </select>
+  </div>
+    <div class="form-group">
+    <label for="start">Choose date:</label><br>
+    <input type="date" style="width: 300px;" value="{{this.Date}}" id="start" name="Date">
+    </div>
+    <div class="form-group">
+    <label for="">Amount</label><br>
+    <input type="number" style="width: 300px;" value="{{this.Amount}}" name="Amount">
+    </div>
+    <div class="form-group">
+    <label for="">Remarks</label><br>
+    <input type="text" style="width: 300px;" value="{{this.Remarks}}" class="form-control input-sm" name="Remarks">
+    </div>
+    <div class="form-group">
+    <button class="btn btn-primary">Add</button>
+    </div>
+{{/if}}
+{{> footer}}

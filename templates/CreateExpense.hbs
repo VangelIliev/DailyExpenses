@@ -1,0 +1,68 @@
+{{> header}}
+{{#if isLoggedIn}}
+<div class="container">
+  <div id="wrapping">
+  <div id="left">
+    <form id="createExpenseForm" class="horizontal" action="#/CreateExpense" method="POST">
+    <div class="form-group-sm">
+    <label for="exampleFormControlSelect1">Choose Category</label><br>
+    <select style="width: 300px;" class="form-select form-select-lg mb-5" id="selector" name="Category">
+      <option>Groceries</option>
+      <option>Entertainment</option>
+      <option>Transportation</option>
+      <option>Tech</option>
+      <option>Bills</option>
+    </select>
+  </div>
+    <div class="form-group">
+    <label for="start">Choose date:</label><br>
+    <input type="date" style="width: 300px;" id="start" name="Date">
+    </div>
+    <div class="form-group">
+    <label for="">Amount</label><br>
+    <input type="number" style="width: 300px;" name="Amount">
+    </div>
+    <div class="form-group">
+    <label for="">Remarks</label><br>
+    <input type="text" style="width: 300px;" class="form-control input-sm" name="Remarks">
+    </div>
+    <div class="form-group">
+    <button class="btn btn-primary">Add Expense</button>
+    </div>
+    </form>
+  </div>
+  <div id="right">
+  <form id="createExpenseForm" class="horizontal" action="#/CreateIncome" method="POST">
+   <div class="form-group-sm">
+    <label for="exampleFormControlSelect1">Choose Category</label><br>
+    <select style="width: 300px;" class="form-select form-select-lg mb-5" id="selector" name="Category">
+      <option>Salary</option>
+      <option>Pension</option>
+      <option>Salary Bonuses</option>
+      <option>Item sale</option>
+      <option>Interest</option>
+    </select>
+  </div>
+    <div class="form-group">
+    <label for="start">Choose date:</label><br>
+    <input type="date" style="width: 300px;" id="start" name="Date">
+    </div>
+    <div class="form-group">
+    <label for="">Amount</label><br>
+    <input type="number" style="width: 300px;" name="Amount">
+    </div>
+    <div class="form-group">
+    <label for="">Remarks</label><br>
+    <input type="text" style="width: 300px;" class="form-control input-sm" name="Remarks">
+    </div>
+    <div class="form-group">
+    <button class="btn btn-primary">Add Income</button>
+    </div>
+    </form>
+  </div>
+</div>
+</div>
+
+
+    {{/if}}
+{{> footer}}

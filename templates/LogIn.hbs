@@ -1,0 +1,23 @@
+{{> header}}
+{{#if isLoggedIn}}
+
+{{else}}
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <form action="#/LogIn" method="POST">
+        <input type="email" id="email" class="fadeIn second" name="email" placeholder="Email">
+        <input type="password" id="password" class="fadeIn third" name="password" placeholder="Password">
+        <input type="submit" class="fadeIn fourth" value="Log In">
+      </form>
+
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" href="#">Dont have an account ?</a>
+        <a href="#/Register" id="SignUp">Sign Up</a>
+      </div>
+  
+    </div>
+  </div>
+{{/if}}
+
+  {{> footer}}
